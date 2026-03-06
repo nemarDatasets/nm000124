@@ -1,0 +1,62 @@
+{
+	"onset": {
+		"Description": "Onset (in seconds) of the event from the beginning of the first datapoint. Negative onsets account for events before the first stored data point.",
+		"Units": "s"
+	},
+	"duration": {
+		"Description": "Duration of the event in seconds from onset. Must be zero, positive, or 'n/a' if unavailable. A zero value indicates an impulse event. ",
+		"Units": "s"
+	},
+	"sample": {
+		"Description": "The event onset time in number of sampling points.First sample is 0."
+	},
+	"value": {
+		"Description": "The event code (also known as trigger code or event ID) associated with the event."
+	},
+	"trial_type": {
+		"Description": "The type, category, or name of the event.",
+		"HED": {
+			"8": "Sensory-event, Experimental-stimulus, Visual-presentation, (Label/8)",
+			"8.5": "Sensory-event, Experimental-stimulus, Visual-presentation, (Label/8_5)",
+			"9": "Sensory-event, Experimental-stimulus, Visual-presentation, (Label/9)",
+			"9.5": "Sensory-event, Experimental-stimulus, Visual-presentation, (Label/9_5)",
+			"10": "Sensory-event, Experimental-stimulus, Visual-presentation, (Label/10)",
+			"10.5": "Sensory-event, Experimental-stimulus, Visual-presentation, (Label/10_5)",
+			"11": "Sensory-event, Experimental-stimulus, Visual-presentation, (Label/11)",
+			"11.5": "Sensory-event, Experimental-stimulus, Visual-presentation, (Label/11_5)",
+			"12": "Sensory-event, Experimental-stimulus, Visual-presentation, (Label/12)",
+			"12.5": "Sensory-event, Experimental-stimulus, Visual-presentation, (Label/12_5)",
+			"13": "Sensory-event, Experimental-stimulus, Visual-presentation, (Label/13)",
+			"13.5": "Sensory-event, Experimental-stimulus, Visual-presentation, (Label/13_5)",
+			"14": "Sensory-event, Experimental-stimulus, Visual-presentation, (Label/14)",
+			"14.5": "Sensory-event, Experimental-stimulus, Visual-presentation, (Label/14_5)",
+			"15": "Sensory-event, Experimental-stimulus, Visual-presentation, (Label/15)",
+			"15.5": "Sensory-event, Experimental-stimulus, Visual-presentation, (Label/15_5)",
+			"25.5": "Sensory-event, Experimental-stimulus, Visual-presentation, (Label/25_5)",
+			"26": "Sensory-event, Experimental-stimulus, Visual-presentation, (Label/26)",
+			"26.5": "Sensory-event, Experimental-stimulus, Visual-presentation, (Label/26_5)",
+			"27": "Sensory-event, Experimental-stimulus, Visual-presentation, (Label/27)",
+			"27.5": "Sensory-event, Experimental-stimulus, Visual-presentation, (Label/27_5)",
+			"28": "Sensory-event, Experimental-stimulus, Visual-presentation, (Label/28)",
+			"28.5": "Sensory-event, Experimental-stimulus, Visual-presentation, (Label/28_5)",
+			"29": "Sensory-event, Experimental-stimulus, Visual-presentation, (Label/29)",
+			"29.5": "Sensory-event, Experimental-stimulus, Visual-presentation, (Label/29_5)",
+			"30": "Sensory-event, Experimental-stimulus, Visual-presentation, (Label/30)",
+			"30.5": "Sensory-event, Experimental-stimulus, Visual-presentation, (Label/30_5)",
+			"31": "Sensory-event, Experimental-stimulus, Visual-presentation, (Label/31)",
+			"31.5": "Sensory-event, Experimental-stimulus, Visual-presentation, (Label/31_5)",
+			"32": "Sensory-event, Experimental-stimulus, Visual-presentation, (Label/32)",
+			"32.5": "Sensory-event, Experimental-stimulus, Visual-presentation, (Label/32_5)",
+			"33": "Sensory-event, Experimental-stimulus, Visual-presentation, (Label/33)"
+		}
+	},
+	"Description": "Event annotations for ssvep task (10, 10.5, 11, 11.5, 12, 12.5, 13, 13.5, 14, 14.5, 15, 15.5, 25.5, 26, 26.5, 27, 27.5, 28, 28.5, 29, 29.5, 30, 30.5, 31, 31.5, 32, 32.5, 33, 8, 8.5, 9, 9.5).",
+	"StimulusPresentation": {
+		"StimulusType": "JFPM visual flicker",
+		"StimulusModalities": [
+			"visual"
+		],
+		"PrimaryModality": "visual",
+		"Environment": "lab"
+	}
+}

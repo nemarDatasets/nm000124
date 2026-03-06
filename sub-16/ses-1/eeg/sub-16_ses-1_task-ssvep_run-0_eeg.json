@@ -1,0 +1,36 @@
+{
+	"TaskName": "ssvep",
+	"Manufacturer": "Compumedics Neuroscan",
+	"PowerLineFrequency": 50.0,
+	"SamplingFrequency": 1000.0,
+	"SoftwareFilters": "n/a",
+	"RecordingDuration": 2380.799,
+	"RecordingType": "continuous",
+	"EEGReference": "Cz",
+	"EEGGround": "midway between Fz and FPz",
+	"EEGPlacementScheme": "10-05 system",
+	"EEGChannelCount": 64,
+	"EOGChannelCount": 0,
+	"ECGChannelCount": 0,
+	"EMGChannelCount": 0,
+	"TriggerChannelCount": 0,
+	"ManufacturersModelName": "Synamps2 (Neuroscan)",
+	"HardwareFilters": {
+		"HardwareFilter": {
+			"bandpass_hz": [
+				0.15,
+				200.0
+			]
+		}
+	},
+	"Instructions": "n/a",
+	"InstitutionName": "Tianjin University",
+	"InstitutionAddress": "CN",
+	"InstitutionalDepartmentName": "Academy of Medical Engineering and Translational Medicine, Tianjin University",
+	"CapManufacturer": "n/a",
+	"CapManufacturersModelName": "n/a",
+	"SubjectArtefactDescription": "Impedance kept below 10 kOhm",
+	"DeviceSerialNumber": "n/a",
+	"Description": "EEG recording.",
+	"MISCChannelCount": 0
+}

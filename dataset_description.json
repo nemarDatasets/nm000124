@@ -1,0 +1,47 @@
+{
+	"Name": "Han2024Fatigue",
+	"BIDSVersion": "1.9.0",
+	"HEDVersion": "8.4.0",
+	"DatasetType": "derivative",
+	"License": "CC BY 4.0",
+	"Authors": [
+		"Yuheng Han",
+		"Yufeng Ke",
+		"Ruiyan Wang",
+		"Tao Wang",
+		"Dong Ming"
+	],
+	"Funding": [
+		"National Key Research and Development Program of China (Grant 2021YFF1200603)",
+		"National Natural Science Foundation of China (Grants 62276184, 61806141)"
+	],
+	"EthicsApprovals": [
+		"Research Ethics Committee of Tianjin University"
+	],
+	"ReferencesAndLinks": [
+		"https://zenodo.org/records/10507229"
+	],
+	"DatasetDOI": "doi:10.1109/TNSRE.2024.3380635",
+	"GeneratedBy": [
+		{
+			"CodeURL": "https://github.com/NeuroTechX/moabb",
+			"Name": "moabb",
+			"Description": "Mother of All BCI Benchmarks",
+			"Version": "1.4.3"
+		}
+	],
+	"SourceDatasets": [
+		{
+			"DOI": "10.1109/TNSRE.2024.3380635",
+			"URL": "https://zenodo.org/records/10507229"
+		}
+	],
+	"Keywords": [
+		"SSVEP",
+		"BCI",
+		"fatigue",
+		"dynamic stopping",
+		"EEG"
+	],
+	"PublicationYear": 2024
+}

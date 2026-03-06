@@ -1,0 +1,225 @@
+_dataset:
+  class: Han2024Fatigue
+  code: Han2024Fatigue
+  doi: 10.1109/TNSRE.2024.3380635
+  interval:
+  - 0.14
+  - 2.14
+  n_subjects: 24
+  paradigm: ssvep
+acquisition:
+  channel_types:
+    eeg: 64
+  filters:
+    bandpass_hz:
+    - 0.15
+    - 200.0
+  ground: midway between Fz and FPz
+  hardware: Synamps2 (Neuroscan)
+  impedance_threshold_kohm: 10
+  line_freq: 50.0
+  montage: standard_1005
+  n_channels: 64
+  reference: Cz
+  sampling_rate: 1000.0
+  sensors:
+  - Fp1
+  - Fpz
+  - Fp2
+  - AF3
+  - AF4
+  - F7
+  - F5
+  - F3
+  - F1
+  - Fz
+  - F2
+  - F4
+  - F6
+  - F8
+  - FT7
+  - FC5
+  - FC3
+  - FC1
+  - FCz
+  - FC2
+  - FC4
+  - FC6
+  - FT8
+  - T7
+  - C5
+  - C3
+  - C1
+  - Cz
+  - C2
+  - C4
+  - C6
+  - T8
+  - M1
+  - TP7
+  - CP5
+  - CP3
+  - CP1
+  - CPz
+  - CP2
+  - CP4
+  - CP6
+  - TP8
+  - M2
+  - P7
+  - P5
+  - P3
+  - P1
+  - Pz
+  - P2
+  - P4
+  - P6
+  - P8
+  - PO7
+  - PO5
+  - PO3
+  - POz
+  - PO4
+  - PO6
+  - PO8
+  - CB1
+  - O1
+  - Oz
+  - O2
+  - CB2
+bci_application:
+  environment: lab
+data_structure:
+  n_blocks: 60
+  n_trials: 960 per frequency band (16 targets x 60 blocks)
+  trials_context: 6 training + 24 fatigue blocks per frequency condition
+documentation:
+  country: CN
+  data_url: https://zenodo.org/records/10507229
+  doi: 10.1109/TNSRE.2024.3380635
+  ethics_approval:
+  - Research Ethics Committee of Tianjin University
+  funding:
+  - National Key Research and Development Program of China (Grant 2021YFF1200603)
+  - National Natural Science Foundation of China (Grants 62276184, 61806141)
+  institution: Tianjin University
+  institution_department: Academy of Medical Engineering and Translational Medicine, Tianjin University
+  investigators:
+  - Yuheng Han
+  - Yufeng Ke
+  - Ruiyan Wang
+  - Tao Wang
+  - Dong Ming
+  keywords:
+  - SSVEP
+  - BCI
+  - fatigue
+  - dynamic stopping
+  - EEG
+  license: CC BY 4.0
+  publication_year: 2024
+  repository: Zenodo
+  senior_author: Dong Ming
+experiment:
+  class_labels:
+  - '8'
+  - '8.5'
+  - '9'
+  - '9.5'
+  - '10'
+  - '10.5'
+  - '11'
+  - '11.5'
+  - '12'
+  - '12.5'
+  - '13'
+  - '13.5'
+  - '14'
+  - '14.5'
+  - '15'
+  - '15.5'
+  - '25.5'
+  - '26'
+  - '26.5'
+  - '27'
+  - '27.5'
+  - '28'
+  - '28.5'
+  - '29'
+  - '29.5'
+  - '30'
+  - '30.5'
+  - '31'
+  - '31.5'
+  - '32'
+  - '32.5'
+  - '33'
+  feedback_type: none
+  has_training_test_split: true
+  mode: offline
+  n_classes: 32
+  paradigm: ssvep
+  primary_modality: visual
+  stimulus_modalities:
+  - visual
+  stimulus_type: JFPM visual flicker
+  synchronicity: synchronous
+  task_type: gaze-shifting
+  trial_duration: 2.0
+file_format: MAT
+paradigm_specific:
+  detected_paradigm: ssvep
+  frequency_resolution_hz: 0.5
+  stimulus_frequencies_hz:
+  - 8.0
+  - 8.5
+  - 9.0
+  - 9.5
+  - 10.0
+  - 10.5
+  - 11.0
+  - 11.5
+  - 12.0
+  - 12.5
+  - 13.0
+  - 13.5
+  - 14.0
+  - 14.5
+  - 15.0
+  - 15.5
+  - 25.5
+  - 26.0
+  - 26.5
+  - 27.0
+  - 27.5
+  - 28.0
+  - 28.5
+  - 29.0
+  - 29.5
+  - 30.0
+  - 30.5
+  - 31.0
+  - 31.5
+  - 32.0
+  - 32.5
+  - 33.0
+participants:
+  age_max: 26
+  age_min: 18
+  gender:
+    female: 12
+    male: 12
+  health_status: healthy
+  n_subjects: 24
+  species: homo sapiens
+preprocessing:
+  data_state: epoched
+runs_per_session: 1
+sessions_per_subject: 2
+tags:
+  modality:
+  - visual
+  pathology:
+  - healthy
+  type:
+  - perception
