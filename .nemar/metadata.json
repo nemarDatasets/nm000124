@@ -1,0 +1,132 @@
+{
+  "version": "2.0",
+  "pipeline_stage": "validated",
+  "authors": {
+    "Yuheng Han": {
+      "orcid": "0009-0003-2474-3300",
+      "affiliations": [
+        {
+          "name": "Academy of Medical Engineering and Translational Medicine, Tianjin University, Tianjin, China"
+        }
+      ]
+    },
+    "Yufeng Ke": {
+      "orcid": "0000-0002-8434-0322",
+      "affiliations": [
+        {
+          "name": "Academy of Medical Engineering and Translational Medicine, Tianjin University, Tianjin, China"
+        }
+      ]
+    },
+    "Ruiyan Wang": {
+      "orcid": "0009-0007-4758-0507",
+      "affiliations": [
+        {
+          "name": "Academy of Medical Engineering and Translational Medicine, Tianjin University, Tianjin, China"
+        }
+      ]
+    },
+    "Tao Wang": {
+      "orcid": "0000-0001-9085-7240",
+      "affiliations": [
+        {
+          "name": "Academy of Medical Engineering and Translational Medicine, Tianjin University, Tianjin, China"
+        }
+      ]
+    },
+    "Dong Ming": {
+      "orcid": "0000-0002-8192-2538",
+      "affiliations": [
+        {
+          "name": "Academy of Medical Engineering and Translational Medicine, Tianjin University, Tianjin, China"
+        }
+      ]
+    }
+  },
+  "related_identifiers": [
+    {
+      "identifier": "10.1109/TNSRE.2024.3380635",
+      "identifier_type": "DOI",
+      "relation_type": "IsDerivedFrom"
+    },
+    {
+      "identifier": "https://github.com/nemarDatasets/nm000124",
+      "identifier_type": "URL",
+      "relation_type": "IsDescribedBy"
+    },
+    {
+      "identifier": "https://nemar.org/dataexplorer/detail?dataset_id=nm000124",
+      "identifier_type": "URL",
+      "relation_type": "IsDescribedBy"
+    },
+    {
+      "identifier": "10.21105/joss.01896",
+      "identifier_type": "DOI",
+      "relation_type": "References"
+    },
+    {
+      "identifier": "10.1038/s41597-019-0104-8",
+      "identifier_type": "DOI",
+      "relation_type": "References"
+    }
+  ],
+  "funding_references": [
+    {
+      "funder_name": "National Key Research and Development Program of China",
+      "award_number": "2021YFF1200603"
+    },
+    {
+      "funder_name": "National Natural Science Foundation of China",
+      "award_number": "62276184"
+    },
+    {
+      "funder_name": "National Natural Science Foundation of China",
+      "award_number": "61806141"
+    }
+  ],
+  "title": "SSVEP fatigue dataset with two frequency paradigms",
+  "license": "CC BY 4.0",
+  "dataset_type": "derivative",
+  "resource_type_general": "Dataset",
+  "modalities": [
+    "eeg"
+  ],
+  "resource_type_specific": "EEG Dataset",
+  "sizes": [
+    "18.3 GB (50 files)"
+  ],
+  "formats": [
+    ".html",
+    ".json",
+    ".md",
+    ".set",
+    ".tsv",
+    ".yaml",
+    ".yml"
+  ],
+  "description": "A steady-state visually evoked potential (SSVEP) electroencephalography dataset designed to investigate the effects of mental fatigue on brain-computer interface performance. The dataset comprises 24 healthy participants performing gaze-shifting tasks across 32 visual stimulation frequencies (8-15 Hz and 25.5-33 Hz) in two sessions, with explicit fatigue manipulation through dynamic stopping strategies. High-resolution 64-channel EEG recordings sampled at 1000 Hz enable investigation of frequency-dependent neural responses and fatigue-related performance degradation in SSVEP-based BCIs.",
+  "methods_description": "EEG data were acquired from 24 healthy participants (12 male, 12 female, ages 18-26) using a 64-channel Synamps2 system (Neuroscan) with standard 1005 montage referenced to Cz. Sampling rate was 1000 Hz with online bandpass filtering (0.15-200 Hz) and 50 Hz line frequency notch filtering. Impedance was maintained below 10 kOhm. Participants performed gaze-shifting tasks with 32 visual stimulation frequencies across two sessions, with 60 blocks per session (6 training + 24 fatigue blocks per frequency condition). Trial duration was 2 seconds with inter-trial intervals of 0.14-2.14 seconds.",
+  "keywords": [
+    {
+      "term": "SSVEP"
+    },
+    {
+      "term": "brain-computer interfaces"
+    },
+    {
+      "term": "EEG"
+    },
+    {
+      "term": "fatigue"
+    },
+    {
+      "term": "visual evoked potentials"
+    },
+    {
+      "term": "Electroencephalography",
+      "subject_scheme": "MeSH",
+      "value_uri": "http://id.nlm.nih.gov/mesh/D004569"
+    }
+  ],
+  "source_hash": "f4b2666615a5a30343cc0c3bb526734712fe1f3e36c198bb626dd0d850743439"
+}
