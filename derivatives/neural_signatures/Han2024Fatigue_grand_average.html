@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SSVEP Power Spectrum — Han2024Fatigue — Han2024Fatigue — MOABB</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600;700&display=swap');
+  :root {
+    --navy: #2F3E5C; --teal: #1B9E77; --coral: #D55E5E;
+    --dark-text: #1b3a57; --grid: #758D99;
+    --bg: #F4F6F8; --card-bg: #FFF;
+    --shadow: 0 1px 4px rgba(0,0,0,0.06); --radius: 8px;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Source Serif 4',Georgia,serif; background:var(--bg); color:var(--dark-text); }
+  .page { max-width:1340px; margin:0 auto; padding:0 28px 56px; }
+  .top-bar { display:flex; height:5px; }
+  .top-bar .teal { width:60px; background:var(--teal); }
+  .top-bar .navy { flex:1; background:var(--navy); }
+  .header { padding:24px 0 20px; display:flex; justify-content:space-between; align-items:center; }
+  .header-left { display:flex; align-items:center; gap:18px; }
+  .head-inset { flex-shrink:0; width:76px; height:76px; background:var(--card-bg); border-radius:50%; padding:6px; box-shadow:var(--shadow); }
+  .header-text h1 { font-size:24px; font-weight:700; line-height:1.2; }
+  .header-text .subtitle { font-size:13px; color:var(--grid); margin-top:4px; }
+  .badge { padding:5px 14px; background:rgba(27,158,119,0.08); border:1px solid rgba(27,158,119,0.2); border-radius:20px; font-size:12px; font-weight:600; color:var(--teal); }
+  .content { display:grid; grid-template-columns:1fr 300px; gap:20px; align-items:start; }
+  @media (max-width:960px) { .content { grid-template-columns:1fr; } }
+  .chart-card { background:var(--card-bg); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden; }
+  .chart-card .plotly-graph-div { width:100% !important; }
+  .metrics-card { background:var(--card-bg); border-radius:var(--radius); box-shadow:var(--shadow); padding:20px; position:sticky; top:16px; max-height:85vh; overflow-y:auto; }
+  .metrics-card h2 { font-size:12px; font-weight:700; color:var(--navy); text-transform:uppercase; letter-spacing:1.2px; margin-bottom:14px; padding-bottom:8px; border-bottom:2px solid var(--navy); }
+  .metric-row { cursor:help; } .metric-row:hover { background:rgba(27,158,119,0.06); }
+  .source { margin-top:28px; padding-top:14px; border-top:1px solid #DFE3E8; font-size:11px; color:var(--grid); font-style:italic; text-align:center; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="top-bar"><div class="teal"></div><div class="navy"></div></div>
+  <div class="header">
+    <div class="header-left">
+      <div class="head-inset"><svg id="head-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;height:100%">
+<circle cx="50.0" cy="50.0" r="38.0" fill="#FAFBFC" stroke="#2F3E5C" stroke-width="1.5"/>
+<polygon points="46.0,12.0 50.0,5.0 54.0,12.0" fill="none" stroke="#2F3E5C" stroke-width="1.5"/>
+<path d="M12.0,45.0 Q8.0,50.0 12.0,55.0" fill="none" stroke="#2F3E5C" stroke-width="1.5"/>
+<path d="M88.0,45.0 Q92.0,50.0 88.0,55.0" fill="none" stroke="#2F3E5C" stroke-width="1.5"/>
+<circle id="elec-Fp1" cx="41.4" cy="20.2" r="5" fill="#D55E5E" opacity="1" data-ch="Fp1" data-cx="41.4" data-cy="20.2"/>
+<circle id="elec-Fpz" cx="49.8" cy="19.0" r="2.5" fill="#2F3E5C" opacity="0.35" data-ch="Fpz" data-cx="49.8" data-cy="19.0"/>
+<circle id="elec-Fp2" cx="58.3" cy="20.0" r="2.5" fill="#2F3E5C" opacity="0.35" data-ch="Fp2" data-cx="58.3" data-cy="20.0"/>
+<circle id="elec-AF3" cx="40.2" cy="22.3" r="2.5" fill="#2F3E5C" opacity="0.35" data-ch="AF3" data-cx="40.2" data-cy="22.3"/>
+<circle id="elec-AF4" cx="59.9" cy="22.0" r="2.5" fill="#2F3E5C" opacity="0.35" data-ch="AF4" data-cx="59.9" data-cy="22.0"/>
+<circle id="elec-F7" cx="29.8" cy="32.0" r="2.5" fill="#2F3E5C" opacity="0.35" data-ch="F7" data-cx="29.8" data-cy="32.0"/>
+<circle id="elec-F5" cx="31.4" cy="30.4" r="2.5" fill="#2F3E5C" opacity="0.35" data-ch="F5" data-cx="31.4" data-cy="30.4"/>
+<circle id="elec-F3" cx="35.5" cy="29.0" r="2.5" fill="#2F3E5C" opacity="0.35" data-ch="F3" data-cx="35.5" data-cy="29.0"/>
+<circle id="elec-F1" cx="42.0" cy="27.9" r="2.5" fill="#2F3E5C" opacity="0.35" data-ch="F1" data-cx="42.0" data-cy="27.9"/>
+<circle id="elec-Fz" cx="49.9" cy="27.5" r="2.5" fill="#2F3E5C" opacity="0.35" data-ch="Fz" data-cx="49.9" data-cy="27.5"/>
+<circle id="elec-F2" cx="58.2" cy="27.7" r="2.5" fill="#2F3E5C" opacity="0.35" data-ch="F2" data-cx="58.2" data-cy="27.7"/>
+<circle id="elec-F4" cx="64.5" cy="28.7" r="2.5" fill="#2F3E5C" opacity="0.35" data-ch="F4" data-cx="64.5" data-cy="28.7"/>
+<circle id="elec-F6" cx="69.1" cy="29.9" r="2.5" fill="#2F3E5C" opacity="0.35" data-ch="F6" data-cx="69.1" data-cy="29.9"/>
+<circle id="elec-F8" cx="70.6" cy="31.5" r="2.5" fill="#2F3E5C" opacity="0.35" data-ch="F8" data-cx="70.6" data-cy="31.5"/>
+<circle id="elec-FT7" cx="26.8" cy="40.1" r="2.5" fill="#2F3E5C" opacity="0.35" data-ch="FT7" data-cx="26.8" data-cy="40.1"/>
+<circle id="elec-FC5" cx="27.8" cy="38.8" r="2.5" fill="#2F3E5C" opacity="0.35" data-ch="FC5" data-cx="27.8" data-cy="38.8"/>
+<circle id="elec-FC3" cx="32.7" cy="37.7" r="2.5" fill="#2F3E5C" opacity="0.35" data-ch="FC3" data-cx="32.7" data-cy="37.7"/>
+<circle id="elec-FC1" cx="40.1" cy="36.7" r="2.5" fill="#2F3E5C" opacity="0.35" data-ch="FC1" data-cx="40.1" data-cy="36.7"/>
+<circle id="elec-FCz" cx="49.9" cy="36.3" r="2.5" fill="#2F3E5C" opacity="0.35" data-ch="FCz" data-cx="49.9" data-cy="36.3"/>
+<circle id="elec-FC2" cx="59.7" cy="36.6" r="2.5" fill="#2F3E5C" opacity="0.35" data-ch="FC2" data-cx="59.7" data-cy="36.6"/>
+<circle id="elec-FC4" cx="67.5" cy="37.4" r="2.5" fill="#2F3E5C" opacity="0.35" data-ch="FC4" data-cx="67.5" data-cy="37.4"/>
+<circle id="elec-FC6" cx="72.4" cy="38.4" r="2.5" fill="#2F3E5C" opacity="0.35" data-ch="FC6" data-cx="72.4" data-cy="38.4"/>
+<circle id="elec-FT8" cx="73.1" cy="39.7" r="2.5" fill="#2F3E5C" opacity="0.35" data-ch="FT8" data-cx="73.1" data-cy="39.7"/>
+<circle id="elec-T7" cx="25.8" cy="48.7" r="2.5" fill="#2F3E5C" opacity="0.35" data-ch="T7" data-cx="25.8" data-cy="48.7"/>
+<circle id="elec-C5" cx="26.9" cy="48.0" r="2.5" fill="#2F3E5C" opacity="0.35" data-ch="C5" data-cx="26.9" data-cy="48.0"/>
+<circle id="elec-C3" cx="31.2" cy="47.4" r="2.5" fill="#2F3E5C" opacity="0.35" data-ch="C3" data-cx="31.2" data-cy="47.4"/>
+<circle id="elec-C1" cx="39.5" cy="47.0" r="2.5" fill="#2F3E5C" opacity="0.35" data-ch="C1" data-cx="39.5" data-cy="47.0"/>
+<circle id="elec-Cz" cx="49.9" cy="46.7" r="2.5" fill="#2F3E5C" opacity="0.35" data-ch="Cz" data-cx="49.9" data-cy="46.7"/>
+<circle id="elec-C2" cx="60.5" cy="46.9" r="2.5" fill="#2F3E5C" opacity="0.35" data-ch="C2" data-cx="60.5" data-cy="46.9"/>
+<circle id="elec-C4" cx="68.9" cy="47.2" r="2.5" fill="#2F3E5C" opacity="0.35" data-ch="C4" data-cx="68.9" data-cy="47.2"/>
+<circle id="elec-C6" cx="73.5" cy="47.7" r="2.5" fill="#2F3E5C" opacity="0.35" data-ch="C6" data-cx="73.5" data-cy="47.7"/>
+<circle id="elec-T8" cx="74.0" cy="48.4" r="2.5" fill="#2F3E5C" opacity="0.35" data-ch="T8" data-cx="74.0" data-cy="48.4"/>
+<circle id="elec-M1" cx="25.3" cy="56.9" r="2.5" fill="#2F3E5C" opacity="0.35" data-ch="M1" data-cx="25.3" data-cy="56.9"/>
+<circle id="elec-TP7" cx="25.6" cy="57.2" r="2.5" fill="#2F3E5C" opacity="0.35" data-ch="TP7" data-cx="25.6" data-cy="57.2"/>
+<circle id="elec-CP5" cx="27.1" cy="57.4" r="2.5" fill="#2F3E5C" opacity="0.35" data-ch="CP5" data-cx="27.1" data-cy="57.4"/>
+<circle id="elec-CP3" cx="31.7" cy="57.5" r="2.5" fill="#2F3E5C" opacity="0.35" data-ch="CP3" data-cx="31.7" data-cy="57.5"/>
+<circle id="elec-CP1" cx="39.7" cy="57.6" r="2.5" fill="#2F3E5C" opacity="0.35" data-ch="CP1" data-cx="39.7" data-cy="57.6"/>
+<circle id="elec-CPz" cx="49.9" cy="57.6" r="2.5" fill="#2F3E5C" opacity="0.35" data-ch="CPz" data-cx="49.9" data-cy="57.6"/>
+<circle id="elec-CP2" cx="60.7" cy="57.5" r="2.5" fill="#2F3E5C" opacity="0.35" data-ch="CP2" data-cx="60.7" data-cy="57.5"/>
+<circle id="elec-CP4" cx="68.7" cy="57.4" r="2.5" fill="#2F3E5C" opacity="0.35" data-ch="CP4" data-cx="68.7" data-cy="57.4"/>
+<circle id="elec-CP6" cx="73.5" cy="57.2" r="2.5" fill="#2F3E5C" opacity="0.35" data-ch="CP6" data-cx="73.5" data-cy="57.2"/>
+<circle id="elec-TP8" cx="74.1" cy="57.1" r="2.5" fill="#2F3E5C" opacity="0.35" data-ch="TP8" data-cx="74.1" data-cy="57.1"/>
+<circle id="elec-M2" cx="74.2" cy="56.9" r="2.5" fill="#2F3E5C" opacity="0.35" data-ch="M2" data-cx="74.2" data-cy="56.9"/>
+<circle id="elec-P7" cx="29.2" cy="65.0" r="2.5" fill="#2F3E5C" opacity="0.35" data-ch="P7" data-cx="29.2" data-cy="65.0"/>
+<circle id="elec-P5" cx="30.6" cy="65.8" r="2.5" fill="#2F3E5C" opacity="0.35" data-ch="P5" data-cx="30.6" data-cy="65.8"/>
+<circle id="elec-P3" cx="34.7" cy="66.5" r="2.5" fill="#2F3E5C" opacity="0.35" data-ch="P3" data-cx="34.7" data-cy="66.5"/>
+<circle id="elec-P1" cx="41.6" cy="67.0" r="2.5" fill="#2F3E5C" opacity="0.35" data-ch="P1" data-cx="41.6" data-cy="67.0"/>
+<circle id="elec-Pz" cx="49.9" cy="67.2" r="2.5" fill="#2F3E5C" opacity="0.35" data-ch="Pz" data-cx="49.9" data-cy="67.2"/>
+<circle id="elec-P2" cx="58.9" cy="67.0" r="2.5" fill="#2F3E5C" opacity="0.35" data-ch="P2" data-cx="58.9" data-cy="67.0"/>
+<circle id="elec-P4" cx="65.6" cy="66.5" r="2.5" fill="#2F3E5C" opacity="0.35" data-ch="P4" data-cx="65.6" data-cy="66.5"/>
+<circle id="elec-P6" cx="69.1" cy="65.7" r="2.5" fill="#2F3E5C" opacity="0.35" data-ch="P6" data-cx="69.1" data-cy="65.7"/>
+<circle id="elec-P8" cx="70.6" cy="64.9" r="2.5" fill="#2F3E5C" opacity="0.35" data-ch="P8" data-cx="70.6" data-cy="64.9"/>
+<circle id="elec-PO7" cx="34.2" cy="71.9" r="2.5" fill="#2F3E5C" opacity="0.35" data-ch="PO7" data-cx="34.2" data-cy="71.9"/>
+<circle id="elec-PO5" cx="36.0" cy="72.4" r="2.5" fill="#2F3E5C" opacity="0.35" data-ch="PO5" data-cx="36.0" data-cy="72.4"/>
+<circle id="elec-PO3" cx="39.4" cy="72.8" r="2.5" fill="#2F3E5C" opacity="0.35" data-ch="PO3" data-cx="39.4" data-cy="72.8"/>
+<circle id="elec-POz" cx="49.8" cy="73.2" r="2.5" fill="#2F3E5C" opacity="0.35" data-ch="POz" data-cx="49.8" data-cy="73.2"/>
+<circle id="elec-PO4" cx="60.2" cy="72.8" r="2.5" fill="#2F3E5C" opacity="0.35" data-ch="PO4" data-cx="60.2" data-cy="72.8"/>
+<circle id="elec-PO6" cx="64.0" cy="72.4" r="2.5" fill="#2F3E5C" opacity="0.35" data-ch="PO6" data-cx="64.0" data-cy="72.4"/>
+<circle id="elec-PO8" cx="65.6" cy="71.9" r="2.5" fill="#2F3E5C" opacity="0.35" data-ch="PO8" data-cx="65.6" data-cy="71.9"/>
+<circle id="elec-O1" cx="41.4" cy="76.1" r="2.5" fill="#2F3E5C" opacity="0.35" data-ch="O1" data-cx="41.4" data-cy="76.1"/>
+<circle id="elec-Oz" cx="49.8" cy="76.8" r="2.5" fill="#2F3E5C" opacity="0.35" data-ch="Oz" data-cx="49.8" data-cy="76.8"/>
+<circle id="elec-O2" cx="58.3" cy="76.0" r="2.5" fill="#2F3E5C" opacity="0.35" data-ch="O2" data-cx="58.3" data-cy="76.0"/>
+<text id="elec-label" x="41.4" y="30.2" text-anchor="middle" fill="#D55E5E" font-size="8" font-weight="700" font-family="Georgia,serif">Fp1</text>
+</svg></div>
+      <div class="header-text">
+        <h1>SSVEP Power Spectrum — Han2024Fatigue</h1>
+        <div class="subtitle">Grand average across 24 subject(s), 1440 total trials</div>
+      </div>
+    </div>
+    <div class="badge">Han2024Fatigue</div>
+  </div>
+  <div class="content">
+    <div class="chart-card"><div>                        <script type="text/javascript">window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
+        <script charset="utf-8" src="https://cdn.plot.ly/plotly-3.3.0.min.js" integrity="sha256-bO3dS6yCpk9aK4gUpNELtCiDeSYvGYnK7jFI58NQnHI=" crossorigin="anonymous"></script>                <div id="571587ca-5a36-4e35-b6a6-52cdbb217378" class="plotly-graph-div" style="height:480px; width:100%;"></div>            <script type="text/javascript">                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("571587ca-5a36-4e35-b6a6-52cdbb217378")) {                    Plotly.newPlot(                        "571587ca-5a36-4e35-b6a6-52cdbb217378",                        [{"line":{"color":"#2F3E5C","width":2.5},"mode":"lines","name":"8 Hz  n=720","x":{"dtype":"f8","bdata":"6GT6KmFs9j+Khvjj1uX9PxZUe06mrwJA6GT6KmFsBkC5dXkHHCkKQIqG+OPW5Q1Arss74EjREEAWVHtOpq8SQH\u002fcurwDjhRA6GT6KmFsFkBQ7TmZvkoYQLl1eQccKRpAIf64dXkHHECKhvjj1uUdQPMOOFI0xB9Arss74EjRIEDij1uXd8AhQBZUe06mryJASxibBdWeI0B\u002f3Lq8A44kQLOg2nMyfSVA6GT6KmFsJkAcKRrij1snQFDtOZm+SihAhLFZUO05KUC5dXkHHCkqQO05mb5KGCtAIf64dXkHLEBWwtgsqPYsQIqG+OPW5S1AvkoYmwXVLkDzDjhSNMQvQJPpq4SxWTBArss74EjRMEDIrcs74EgxQOKPW5d3wDFA\u002fHHr8g44MkAWVHtOpq8yQDA2C6o9JzNASxibBdWeM0Bl+iphbBY0QH\u002fcurwDjjRAmb5KGJsFNUCzoNpzMn01QM2Cas\u002fJ9DVA6GT6KmFsNkACR4qG+OM2QBwpGuKPWzdANguqPSfTN0BQ7TmZvko4QGrPyfRVwjhAhLFZUO05OUCfk+mrhLE5QLl1eQccKTpA01cJY7OgOkDtOZm+Shg7QAccKRrijztAIf64dXkHPEA84EjREH88QFbC2Cyo9jxAcKRoiD9uPUCKhvjj1uU9QKRoiD9uXT5AvkoYmwXVPkDYLKj2nEw\u002fQPMOOFI0xD9Ahvjj1uUdQECT6auEsVlAQKHaczJ9lUBArss74EjRQEC7vAOOFA1BQMityzvgSEFA1Z6T6auEQUDij1uXd8BBQO+AI0VD\u002fEFA\u002fHHr8g44QkAJY7Og2nNCQBZUe06mr0JAI0VD\u002fHHrQkAwNguqPSdDQD0n01cJY0NASxibBdWeQ0BYCWOzoNpDQGX6KmFsFkRAcuvyDjhSREB\u002f3Lq8A45EQIzNgmrPyURAmb5KGJsFRUCmrxLGZkFFQLOg2nMyfUVAwJGiIf64RUDNgmrPyfRFQNpzMn2VMEZA6GT6KmFsRkD1VcLYLKhGQAJHiob440ZADzhSNMQfR0AcKRrij1tHQCka4o9bl0dANguqPSfTR0BD\u002fHHr8g5IQFDtOZm+SkhAXd4BR4qGSEBqz8n0VcJIQHfAkaIh\u002fkhAhLFZUO05SUCSoiH+uHVJQJ+T6auEsUlArISxWVDtSUC5dXkHHClKQMZmQbXnZEpA01cJY7OgSkDgSNEQf9xKQO05mb5KGEtA+iphbBZUS0AHHCka4o9LQBQN8cety0tAIf64dXkHTEAu74AjRUNMQDzgSNEQf0xASdEQf9y6TEBWwtgsqPZMQGOzoNpzMk1AcKRoiD9uTUB9lTA2C6pNQIqG+OPW5U1Al3fAkaIhTkCkaIg\u002fbl1OQLFZUO05mU5AvkoYmwXVTkDLO+BI0RBPQNgsqPacTE9A5h1wpGiIT0DzDjhSNMRPQAAAAAAAAFBAhvjj1uUdUEAN8cetyztQQJPpq4SxWVBAGuKPW5d3UECh2nMyfZVQQCfTVwljs1BArss74EjRUEA0xB+3Lu9QQLu8A44UDVFAQbXnZPoqUUDIrcs74EhRQE6mrxLGZlFA1Z6T6auEUUBbl3fAkaJRQOKPW5d3wFFAaIg\u002fbl3eUUDvgCNFQ\u002fxRQHZ5BxwpGlJA\u002fHHr8g44UkCDas\u002fJ9FVSQAljs6Dac1JAkFuXd8CRUkAWVHtOpq9SQJ1MXyWMzVJAI0VD\u002fHHrUkCqPSfTVwlTQDA2C6o9J1NAty7vgCNFU0A9J9NXCWNTQMQfty7vgFNASxibBdWeU0DREH\u002fcurxTQFgJY7Og2lNA3gFHiob4U0Bl+iphbBZUQOvyDjhSNFRAcuvyDjhSVED449blHXBUQH\u002fcurwDjlRABdWek+mrVECMzYJqz8lUQBLGZkG151RAmb5KGJsFVUAgty7vgCNVQKavEsZmQVVALaj2nExfVUCzoNpzMn1VQDqZvkoYm1VAwJGiIf64VUBHiob449ZVQM2Cas\u002fJ9FVAVHtOpq8SVkDaczJ9lTBWQGFsFlR7TlZA6GT6KmFsVkA="},"y":{"dtype":"f8","bdata":"tzVqEvRvPD0eeUqXNlg9PYCuaA4+nj49SyN+ZpIuQD09fdbcWWFBPVX2H3u9CEM9gIq5f95YRT1NYzxdW5xIPfI4sXFetE09XGn8s3CjUj38FMVlEjNaPdmDx9ZNVmM9HzbvPJ+AbD1SQbTpcHd0Pbo354dpsXk9PRZaLWlGgD3YPod3FkKBPfB5Yp0xxIU94x+OUOgLhj0GnXCPZWeGPT+5z3R6FoU9SPZBcNz2gz1y4JnJIat9PcGdEAcLwnY9EINEPB1QdT3HVeTSj6FxPb0VckPRvnA9HyzE1WeKbj3zlQYAqa5sPQtohknlbWo9v7Kqp05Zaz0yo8wlxnNqPT8o6iRA1Wg9v3OvcPUQaT3l\u002f5FIb69nPf0BNm5FA2k96HrG+J0maj22a2VHLExoPVD4iqC9WWk9wXzleP2laj3\u002fNrgtIMxrPSlnx9OC92o9EYQj0cLqbD3oaHqnvVFtPV3MuxNNxXE9830F5Lnkaj0dYUAaTBtwPV\u002fWLulza289lVdT8YB8bz3dUfpwSVB2PTJ43LeWN3A9oWo\u002fry21cj1\u002fR0CWYtxwPavbQyytNHM9UoTS5gz8dD01a1WKE\u002f90PfNTlri0inU9+r9fgbIZcD3hWQMQyMJwPazk+5qg0nA9WLlq1G6eaD0LwGCiWQ1sPVcdZhds1nA9Ej2wTrlzaD2NBX1r8LRqPUDnbExXMmo9xplWaEW\u002faD1ysRDF2oBlPc7sj+CznmU985+AmWuZZT31czKg0xBjPbbtYXXCYGI92q7IV2z7Yj05cfqN\u002fxtiPc6hkozNdl89cumJBdq3XD1Hj56iYmNdPWhDEATq8Fw9lLRTtFQLWj3UqjC7vmZaPT92FvRorlk9s7xiKu04Vj0\u002fgYKQsDlXPdMQWHWwfFY9fAHwQYpcUT3urpM9pwxSPVDtAtKxv0095OPRdaqTSj1zYrrZoABKPbWzzrLTq0k9\u002fCQGPQ4VTD0lC+FVp2dCPXJRyYP5mEA939OqJUJYPj21rSTkUxA9Pd+P4\u002fRb8Dk930GWpWC0NT1rdrxyFd4zPR54pGfU0S49oTvh7sCXLT3EXQosIOApPQEdpykP\u002fCQ9a+hFVVFEFz2EbEYsQQ0DPaIT8otp\u002fvs87xQH6eZ0\u002fzy3qcgDA6QJPRxHwk+8sBA996Lmc5TaDT1LNJFiWfQJPfDgcT7zNwk9Lvn1TbLwBz0LDSVrp1IEPS2Xx1lWiAE9mlHb5T00AT3AtMpRqBv+PNBUl2IYn\u002fg8LGkHwySF9TyFIo7TmoTzPBy3Xgmv0vE8se8PfgsC8TyuYdPLoqrsPIag60Hltus8fzWQDUBp6DzLdnRVC77mPGbBydAM2eQ8VnzuiWbS4jxJmVTg9aviPMxW7KT79uA82iYnjDYT3zxRWMhDr\u002fbcPB9lQk15Rts8sh1L5lqE2jzp40YF8OLYPGVjm5vw7dc8f5BU\u002fkZi1jxdYrPx3jPVPA1LF0ff2NM83Hmx0+GN0zxIqumsOxLSPCcPKQNI\u002fdE8QbNDg7QG0TwKrUMhJlXQPFJkfHbYos880EJSJI9EzjxA1mm6QVDNPIqpCTLmtss8kIMYkzQXyzwehMswavvJPATW\u002fN3sX8k84eFyl1GXyDyuels+XcnHPI3Or+GNEsc8r\u002fbLtrmXxjxDtVk039HFPHqoYHUCCsU81Z5B3QGhxDxaS3vY+v3DPA9qDLiOgsM8kMTm+cgRwzz8Fl4aE4PCPEHVzaqfL8I8yHJgPGutwTwmddvaaj\u002fBPG03OLamzsA8pLcdbVR6wDxmyENr5QPAPJrX2o7\u002fbL88H6oNz0S+vjxpwVk\u002fVy++PJxqkWYIdL08vyDVTU3ovDx1bjOaUl28PGJlbwW12rs8P62cQEA\u002fuzw8EInSe7y6PO9rlVrTPbo8qDxiLkCxuTz9I0CCCk+5PJImWbSR47g8PCM1dU5nuDx5mComc\u002fW3PNwIxFzFkLc8fThohHo6tzwLvZGD0eC2POUUxMztdLY8QTS4BYYhtjxOrMdsn821PPebE9Yre7U8MOGuRkMptTw="},"type":"scatter"},{"line":{"color":"#D55E5E","width":2.5},"mode":"lines","name":"8.5 Hz  n=720","x":{"dtype":"f8","bdata":"6GT6KmFs9j+Khvjj1uX9PxZUe06mrwJA6GT6KmFsBkC5dXkHHCkKQIqG+OPW5Q1Arss74EjREEAWVHtOpq8SQH\u002fcurwDjhRA6GT6KmFsFkBQ7TmZvkoYQLl1eQccKRpAIf64dXkHHECKhvjj1uUdQPMOOFI0xB9Arss74EjRIEDij1uXd8AhQBZUe06mryJASxibBdWeI0B\u002f3Lq8A44kQLOg2nMyfSVA6GT6KmFsJkAcKRrij1snQFDtOZm+SihAhLFZUO05KUC5dXkHHCkqQO05mb5KGCtAIf64dXkHLEBWwtgsqPYsQIqG+OPW5S1AvkoYmwXVLkDzDjhSNMQvQJPpq4SxWTBArss74EjRMEDIrcs74EgxQOKPW5d3wDFA\u002fHHr8g44MkAWVHtOpq8yQDA2C6o9JzNASxibBdWeM0Bl+iphbBY0QH\u002fcurwDjjRAmb5KGJsFNUCzoNpzMn01QM2Cas\u002fJ9DVA6GT6KmFsNkACR4qG+OM2QBwpGuKPWzdANguqPSfTN0BQ7TmZvko4QGrPyfRVwjhAhLFZUO05OUCfk+mrhLE5QLl1eQccKTpA01cJY7OgOkDtOZm+Shg7QAccKRrijztAIf64dXkHPEA84EjREH88QFbC2Cyo9jxAcKRoiD9uPUCKhvjj1uU9QKRoiD9uXT5AvkoYmwXVPkDYLKj2nEw\u002fQPMOOFI0xD9Ahvjj1uUdQECT6auEsVlAQKHaczJ9lUBArss74EjRQEC7vAOOFA1BQMityzvgSEFA1Z6T6auEQUDij1uXd8BBQO+AI0VD\u002fEFA\u002fHHr8g44QkAJY7Og2nNCQBZUe06mr0JAI0VD\u002fHHrQkAwNguqPSdDQD0n01cJY0NASxibBdWeQ0BYCWOzoNpDQGX6KmFsFkRAcuvyDjhSREB\u002f3Lq8A45EQIzNgmrPyURAmb5KGJsFRUCmrxLGZkFFQLOg2nMyfUVAwJGiIf64RUDNgmrPyfRFQNpzMn2VMEZA6GT6KmFsRkD1VcLYLKhGQAJHiob440ZADzhSNMQfR0AcKRrij1tHQCka4o9bl0dANguqPSfTR0BD\u002fHHr8g5IQFDtOZm+SkhAXd4BR4qGSEBqz8n0VcJIQHfAkaIh\u002fkhAhLFZUO05SUCSoiH+uHVJQJ+T6auEsUlArISxWVDtSUC5dXkHHClKQMZmQbXnZEpA01cJY7OgSkDgSNEQf9xKQO05mb5KGEtA+iphbBZUS0AHHCka4o9LQBQN8cety0tAIf64dXkHTEAu74AjRUNMQDzgSNEQf0xASdEQf9y6TEBWwtgsqPZMQGOzoNpzMk1AcKRoiD9uTUB9lTA2C6pNQIqG+OPW5U1Al3fAkaIhTkCkaIg\u002fbl1OQLFZUO05mU5AvkoYmwXVTkDLO+BI0RBPQNgsqPacTE9A5h1wpGiIT0DzDjhSNMRPQAAAAAAAAFBAhvjj1uUdUEAN8cetyztQQJPpq4SxWVBAGuKPW5d3UECh2nMyfZVQQCfTVwljs1BArss74EjRUEA0xB+3Lu9QQLu8A44UDVFAQbXnZPoqUUDIrcs74EhRQE6mrxLGZlFA1Z6T6auEUUBbl3fAkaJRQOKPW5d3wFFAaIg\u002fbl3eUUDvgCNFQ\u002fxRQHZ5BxwpGlJA\u002fHHr8g44UkCDas\u002fJ9FVSQAljs6Dac1JAkFuXd8CRUkAWVHtOpq9SQJ1MXyWMzVJAI0VD\u002fHHrUkCqPSfTVwlTQDA2C6o9J1NAty7vgCNFU0A9J9NXCWNTQMQfty7vgFNASxibBdWeU0DREH\u002fcurxTQFgJY7Og2lNA3gFHiob4U0Bl+iphbBZUQOvyDjhSNFRAcuvyDjhSVED449blHXBUQH\u002fcurwDjlRABdWek+mrVECMzYJqz8lUQBLGZkG151RAmb5KGJsFVUAgty7vgCNVQKavEsZmQVVALaj2nExfVUCzoNpzMn1VQDqZvkoYm1VAwJGiIf64VUBHiob449ZVQM2Cas\u002fJ9FVAVHtOpq8SVkDaczJ9lTBWQGFsFlR7TlZA6GT6KmFsVkA="},"y":{"dtype":"f8","bdata":"0ma4H04FNj3lEYEVXsE2PUP4n77Kyjc9Rz3V+Ms4OT23FZixWTM7PdvWC4Mv+D090adC4xrpQD3nJp4+U7NDPbw7lCTEcEg9aD7\u002fK6chTz3hyVy7UrBWPZwNGpZQ8GE917K5O0B6aT0310oRsqRzPdFFVYYXkHs9g5Iewv6bfj3FrhtlXDmDPQouRloAoYU93Doc1D4\u002fhj2UThtI\u002fWOHPWlvm\u002fp2uIg9yL+Hnat5hT3FkTPLLdKAPXDCyw3R3nk9gp4abFz8dT31OmxCo1FzPUsfr6fg93A9x\u002fAhrbgIbj2X4x6clttrPeXyAQ4dQ2w9S7+GE5hvaz38BgaD\u002f5ZrPYOWhDA9O2k9lf3KLaV4aT2\u002f95Tpr8dpPexUNwYBMGg9VFGoWlYTaT0zgmFTVrFnPWj48uIaamg9NvyFjYjKaz1wxjhQYztsPVySLHTBMGw9C707yqlQaz1g8\u002fz9ufZwPRYTviU7L3A9K33MEBjvcj1S7gnyzaVzPXILeYyw3HI9wfim84Lkdz0\u002fluVF1ztzPdBaOA7u8ng9kWadEK9Fdz3xrZv8DAlyPbWauLYdWHg93oOTwptkcz3FVtYTKFd2PV7GaTXqinU9JNAs4fdKdj3a5AJH0PxzPV9WGCBh9W89pHKLGx57bz3AnK0ahZdrPUP0RQheiG49ro6jTrQ\u002fZj3JKBBNvF1qPVrJZxLxPWc9wpZab8onZj0YRx3yV79mPbXVWXXhAGU9VJMRrXLfYz2zNaYQWQlkPb2GdOH1C2A9EOOxyl9JYT3EVeWQil9dPZxObFL4R1w9nrJbzLzgWj3an5gf8YVaPZgjtOeWrVo9JdRkURwKWD2hTHZNUhZaPTMfMW9D9lY9iCYKSsl4Vj0rXqW9aPBUPcHbClFZfVI9bB3yy\u002fZlUD38kQI+4JZQPS4hrqhNjk89ZYXX\u002fC9aRz2m5z85w55IPRtu23\u002ftF0c9XZsH5bm2RD2zmi7Wyh5DPWsKuxDJmEA9adnRowFKPT2QkU+NwWM8PfeC2CcauTo93+Wsoj22Nz0hj\u002ftU7Hc2PaGGnEnKcDA9bAkQgFk9LT23zv7Cf2YoPUI+rXaJ6iM9HXwJ8zB2Fj1Jd6RXFRwAPVyfuKDj8\u002fY8ZYz+2yWE+TzwRsu6pc4HPTWosmqAZQ09xmbGZGbYDD1h1\u002fpl59wLPU5crn4QmAg9qdRafRDjBj1j6IairTkFPWeRqihhEAE98pSNx2ul+zybeENFlMH2PFXja5r6yfc8P\u002fpvNylw9jz6pfMEX+fzPNNr0PWTp\u002fA8gZ0lJZtw7TxiO2TEo1zqPNfS2jILouc8f1+Ii0xd5TymYGGsyTvjPH\u002fBks7qgOI8XJNcMWxn4TxAp60GexDdPAe2yhS3Bt48R\u002f4nfEyY3DykhUarLPrZPGln1Fpx6tc8tuy8dRNm1zxOWaCjacTVPPMFefp9FtQ8G7RizJbt0jxQkLsyLWnSPOQo0mhokNE83laOFTLe0Dw55EcG6nfPPKXlvF3q8808cs1w84qezjyk9H3ZNLPMPM6GtNxoqco81UJGabxDyjxJWkA5aovJPNIxV6bPH8g85NBNGZKhxzzhhtUGBgXHPGH4wjNJYcY80D3TEX0yxTx5Hi5\u002fLbHEPNkJcmjpLcQ8hEs\u002fUpK3wzxH+tAsYDfDPGHxpXGRvMI8\u002f+pdNwgfwjz3dK7EvLjBPEt5FJd4OcE8oEmWlEvHwDwIMV2rozvAPMEH+9KWG8A8Ji4ypqeXvzy5xK+ploi+PBHGM1tjyL08bzquR8kwvTxkHxx2X528PLPHuZaR77s8QGKTjUNeuzzHlAxUUwi7PNG9EZ\u002fTc7o8Tpxkg+IGujxpkIjAlHi5PLyq77wL1bg8Sce+8UKsuDyctjWF\u002fia4PHOjak7HpLc8IYoHRNtQtzyKdSh9iwC3PERiiux9k7Y84SKsQgQmtjxJzIa+PtS1PDzsy7B\u002fhrU8ulLR2d82tTwm8jjKE+e0PEvmSWbqmrQ8eraxcDxitDxegBA+2Qe0PBm3OyUxxbM8tQv4E3iRszw="},"type":"scatter"}],                        {"template":{"layout":{"colorway":["#2F3E5C","#1B9E77","#56B4E9","#7E63B8","#E69F00","#D55E5E"],"font":{"color":"#1b3a57","family":"Georgia, Cambria, 'Times New Roman', serif","size":12},"hoverlabel":{"bgcolor":"white","bordercolor":"#2F3E5C","font":{"color":"#1b3a57","family":"Georgia, Cambria, 'Times New Roman', serif","size":12}},"legend":{"bgcolor":"rgba(250, 251, 252, 0.92)","borderwidth":0,"font":{"family":"Georgia, Cambria, 'Times New Roman', serif","size":11},"orientation":"h","x":0.0,"xanchor":"left","y":1.02,"yanchor":"bottom"},"margin":{"b":64,"l":72,"r":24,"t":80},"paper_bgcolor":"#FAFBFC","plot_bgcolor":"#FAFBFC","title":{"font":{"color":"#1b3a57","family":"Georgia, Cambria, 'Times New Roman', serif","size":20},"pad":{"b":12},"x":0.02,"xanchor":"left","y":0.97,"yanchor":"top"},"xaxis":{"linecolor":"#758D99","linewidth":0.7,"showgrid":false,"tickcolor":"#758D99","ticklen":4,"ticks":"outside","tickwidth":0.7,"title":{"font":{"color":"#1b3a57","size":13},"standoff":10},"zeroline":false},"yaxis":{"gridcolor":"rgba(117, 141, 153, 0.18)","griddash":"solid","gridwidth":0.5,"showgrid":true,"showline":false,"ticks":"","title":{"font":{"color":"#1b3a57","size":13},"standoff":8},"zeroline":false}}},"shapes":[{"line":{"color":"rgba(47, 62, 92, 0.3)","dash":"dash","width":1},"type":"line","x0":1.0,"x1":1.0,"xref":"x","y0":0,"y1":1,"yref":"y domain"},{"line":{"color":"rgba(47, 62, 92, 0.3)","dash":"dot","width":1},"type":"line","x0":2.0,"x1":2.0,"xref":"x","y0":0,"y1":1,"yref":"y domain"},{"line":{"color":"rgba(47, 62, 92, 0.3)","dash":"dash","width":1},"type":"line","x0":2.0,"x1":2.0,"xref":"x","y0":0,"y1":1,"yref":"y domain"},{"line":{"color":"rgba(47, 62, 92, 0.3)","dash":"dot","width":1},"type":"line","x0":4.0,"x1":4.0,"xref":"x","y0":0,"y1":1,"yref":"y domain"},{"fillcolor":"#2F3E5C","layer":"above","line":{"width":0},"type":"rect","x0":0.0,"x1":1.0,"xref":"paper","y0":1.005,"y1":1.015,"yref":"paper"},{"fillcolor":"#1B9E77","layer":"above","line":{"width":0},"type":"rect","x0":0.0,"x1":0.04,"xref":"paper","y0":0.997,"y1":1.005,"yref":"paper"}],"annotations":[{"font":{"color":"#2F3E5C","size":9},"showarrow":false,"text":"\u003cb\u003e1 Hz\u003c\u002fb\u003e","x":1.0,"xref":"x","y":1.06,"yref":"paper"},{"font":{"color":"#2F3E5C","size":9},"showarrow":false,"text":"\u003cb\u003e2 Hz\u003c\u002fb\u003e","x":2.0,"xref":"x","y":1.06,"yref":"paper"},{"font":{"color":"#758D99","family":"Georgia, Cambria, 'Times New Roman', serif","size":9},"showarrow":false,"text":"\u003ci\u003eGenerated using MOABB v1.4.3 — Chevallier et al. (2024) doi:10.48550\u002farXiv.2404.15319\u003c\u002fi\u003e","x":0.0,"xanchor":"left","xref":"paper","y":-0.08,"yanchor":"top","yref":"paper"}],"title":{"font":{"size":18,"color":"#1b3a57","family":"Georgia, Cambria, 'Times New Roman', serif"},"text":"\u003cb\u003eSSVEP Power Spectrum — Han2024Fatigue\u003c\u002fb\u003e\u003cbr\u003e\u003cspan style='font-size:13px;color:#758D99'\u003eGrand average · 1440 trials · Welch PSD\u003c\u002fspan\u003e","x":0.0,"xanchor":"left","y":0.96,"yanchor":"top"},"yaxis":{"title":{"text":"Power Spectral Density (V²\u002fHz)"},"type":"log"},"margin":{"t":100,"b":60,"l":72,"r":24},"xaxis":{"title":{"text":"Frequency (Hz)"}},"hovermode":"x unified","height":480},                        {"displayModeBar": true, "displaylogo": false, "responsive": true}                    )                };            </script>        </div></div>
+    <div class="metrics-card">
+      <h2>Objective Metrics</h2>
+      <table style="border-collapse:collapse;font-family:Georgia,serif;width:100%"><tr><td colspan="2" style="padding:8px 0 4px;font-weight:700;color:#2F3E5C;border-bottom:1px solid #2F3E5C;font-size:12px;letter-spacing:0.5px">8</td></tr><tr class="metric-row" title="psd / mean_noise  # convolution-kernel SNR"><td style="padding:3px 12px 3px 0;color:#758D99;font-size:11px">Snr</td><td style="padding:3px 0;font-weight:600;color:#1b3a57;font-size:11px;text-align:right">0.00</td></tr><tr class="metric-row" title="np.max(psd)  # Welch"><td style="padding:3px 12px 3px 0;color:#758D99;font-size:11px">Peak Power</td><td style="padding:3px 0;font-weight:600;color:#1b3a57;font-size:11px;text-align:right">2.547e-12</td></tr><tr class="metric-row" title="freqs[np.argmax(psd)]"><td style="padding:3px 12px 3px 0;color:#758D99;font-size:11px">Peak Freq Hz</td><td style="padding:3px 0;font-weight:600;color:#1b3a57;font-size:11px;text-align:right">10.3 Hz</td></tr><tr class="metric-row" title="len(epochs[event_name])"><td style="padding:3px 12px 3px 0;color:#758D99;font-size:11px">N Trials</td><td style="padding:3px 0;font-weight:600;color:#1b3a57;font-size:11px;text-align:right">720</td></tr><tr><td colspan="2" style="padding:8px 0 4px;font-weight:700;color:#2F3E5C;border-bottom:1px solid #2F3E5C;font-size:12px;letter-spacing:0.5px">8.5</td></tr><tr class="metric-row" title="psd / mean_noise  # convolution-kernel SNR"><td style="padding:3px 12px 3px 0;color:#758D99;font-size:11px">Snr</td><td style="padding:3px 0;font-weight:600;color:#1b3a57;font-size:11px;text-align:right">0.00</td></tr><tr class="metric-row" title="np.max(psd)  # Welch"><td style="padding:3px 12px 3px 0;color:#758D99;font-size:11px">Peak Power</td><td style="padding:3px 0;font-weight:600;color:#1b3a57;font-size:11px;text-align:right">2.81e-12</td></tr><tr class="metric-row" title="freqs[np.argmax(psd)]"><td style="padding:3px 12px 3px 0;color:#758D99;font-size:11px">Peak Freq Hz</td><td style="padding:3px 0;font-weight:600;color:#1b3a57;font-size:11px;text-align:right">10.7 Hz</td></tr><tr class="metric-row" title="len(epochs[event_name])"><td style="padding:3px 12px 3px 0;color:#758D99;font-size:11px">N Trials</td><td style="padding:3px 0;font-weight:600;color:#1b3a57;font-size:11px;text-align:right">720</td></tr></table><div style="margin-top:12px;text-align:right"><a href="https://github.com/NeuroTechX/moabb/blob/develop/moabb/analysis/neural_signatures.py" target="_blank" style="font-size:10px;color:#758D99;text-decoration:none;border-bottom:1px dotted #758D99">View source: compute_metrics()</a></div>
+    </div>
+  </div>
+  <div class="source">Generated using MOABB v1.4.3 — Chevallier et al. (2024) doi:10.48550/arXiv.2404.15319</div>
+  <script>
+(function() {
+  var chNames = ['Fp1', 'Fpz', 'Fp2', 'AF3', 'AF4', 'F7', 'F5', 'F3', 'F1', 'Fz', 'F2', 'F4', 'F6', 'F8', 'FT7', 'FC5', 'FC3', 'FC1', 'FCz', 'FC2', 'FC4', 'FC6', 'FT8', 'T7', 'C5', 'C3', 'C1', 'Cz', 'C2', 'C4', 'C6', 'T8', 'M1', 'TP7', 'CP5', 'CP3', 'CP1', 'CPz', 'CP2', 'CP4', 'CP6', 'TP8', 'M2', 'P7', 'P5', 'P3', 'P1', 'Pz', 'P2', 'P4', 'P6', 'P8', 'PO7', 'PO5', 'PO3', 'POz', 'PO4', 'PO6', 'PO8', 'CB1', 'O1', 'Oz', 'O2', 'CB2'];
+  var chSet = new Set(chNames);
+  var CORAL = "#D55E5E";
+  var NAVY  = "#2F3E5C";
+
+  function highlightElectrode(name) {
+    if (!chSet.has(name)) return;
+    chNames.forEach(function(ch) {
+      var el = document.getElementById("elec-" + ch);
+      if (!el) return;
+      var active = (ch === name);
+      el.setAttribute("r", active ? "5" : "2.5");
+      el.setAttribute("fill", active ? CORAL : NAVY);
+      el.setAttribute("opacity", active ? "1" : "0.35");
+    });
+    var lbl = document.getElementById("elec-label");
+    var dot = document.getElementById("elec-" + name);
+    if (lbl && dot) {
+      lbl.textContent = name;
+      lbl.setAttribute("x", dot.getAttribute("data-cx"));
+      lbl.setAttribute("y", String(parseFloat(dot.getAttribute("data-cy")) + 10));
+    }
+  }
+
+  function bind() {
+    var plot = document.querySelector(".js-plotly-plot");
+    if (!plot || !plot.on) { setTimeout(bind, 200); return; }
+    plot.on("plotly_sliderchange", function(e) {
+      if (e && e.step && e.step.label) {
+        highlightElectrode(e.step.label);
+      }
+    });
+    plot.on("plotly_buttonclicked", function(e) {
+      if (e && e.button && e.button.label) {
+        highlightElectrode(e.button.label);
+      }
+    });
+  }
+  if (document.readyState === "complete") bind();
+  else window.addEventListener("load", bind);
+})();
+</script>
+</div>
+</body>
+</html>

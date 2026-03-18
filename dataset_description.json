@@ -1,5 +1,5 @@
 {
-	"Name": "Han2024Fatigue",
+	"Name": "SSVEP fatigue dataset with two frequency paradigms",
 	"BIDSVersion": "1.9.0",
 	"HEDVersion": "8.4.0",
 	"DatasetType": "derivative",
@@ -21,7 +21,6 @@
 	"ReferencesAndLinks": [
 		"https://zenodo.org/records/10507229"
 	],
-	"DatasetDOI": "doi:10.1109/TNSRE.2024.3380635",
 	"GeneratedBy": [
 		{
 			"CodeURL": "https://github.com/NeuroTechX/moabb",
