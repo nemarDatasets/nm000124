@@ -1,6 +1,11 @@
 {
   "version": "2.0",
   "pipeline_stage": "validated",
+  "title": "Han2024 – SSVEP fatigue dataset with two frequency paradigms",
+  "description": "A 64-channel EEG dataset from 24 healthy subjects performing steady-state visually evoked potential (SSVEP) brain-computer interface tasks across two frequency paradigms (8.0-15.5 Hz and 25.5-33.0 Hz). The dataset includes training and fatigue-state sessions with 32 visual targets encoded using joint frequency-phase modulation, designed to investigate the effects of mental fatigue on SSVEP-BCI performance and the efficacy of dynamic stopping strategies.",
+  "methods_description": "EEG was recorded at 1000 Hz using a 64-channel Synamps2 system (Neuroscan) with standard 10-05 montage referenced to Cz. Participants performed two SSVEP-BCI tasks with low-frequency (16 targets, 8.0-15.5 Hz) and high-frequency (16 targets, 25.5-33.0 Hz) paradigms using JFPM encoding in a 4×4 matrix layout. Each paradigm consisted of training (6 blocks) and fatigue (24 blocks) phases, with 2-second stimulus presentations per trial. Data were epoched to 3-second windows (3000 samples).",
+  "license": "CC BY 4.0",
+  "dataset_type": "derivative",
   "authors": {
     "Yuheng Han": {
       "orcid": "0009-0003-2474-3300",
@@ -43,6 +48,26 @@
       ]
     }
   },
+  "keywords": [
+    {
+      "term": "SSVEP"
+    },
+    {
+      "term": "brain-computer interfaces"
+    },
+    {
+      "term": "EEG"
+    },
+    {
+      "term": "fatigue"
+    },
+    {
+      "term": "visual evoked potentials"
+    },
+    {
+      "term": "frequency paradigm"
+    }
+  ],
   "related_identifiers": [
     {
       "identifier": "10.1109/TNSRE.2024.3380635",
@@ -84,14 +109,11 @@
       "award_number": "61806141"
     }
   ],
-  "title": "SSVEP fatigue dataset with two frequency paradigms",
-  "license": "CC BY 4.0",
-  "dataset_type": "derivative",
   "resource_type_general": "Dataset",
+  "resource_type_specific": "EEG Dataset",
   "modalities": [
     "eeg"
   ],
-  "resource_type_specific": "EEG Dataset",
   "sizes": [
     "18.3 GB (50 files)"
   ],
@@ -104,29 +126,5 @@
     ".yaml",
     ".yml"
   ],
-  "description": "A steady-state visually evoked potential (SSVEP) electroencephalography dataset designed to investigate the effects of mental fatigue on brain-computer interface performance. The dataset comprises 24 healthy participants performing gaze-shifting tasks across 32 visual stimulation frequencies (8-15 Hz and 25.5-33 Hz) in two sessions, with explicit fatigue manipulation through dynamic stopping strategies. High-resolution 64-channel EEG recordings sampled at 1000 Hz enable investigation of frequency-dependent neural responses and fatigue-related performance degradation in SSVEP-based BCIs.",
-  "methods_description": "EEG data were acquired from 24 healthy participants (12 male, 12 female, ages 18-26) using a 64-channel Synamps2 system (Neuroscan) with standard 1005 montage referenced to Cz. Sampling rate was 1000 Hz with online bandpass filtering (0.15-200 Hz) and 50 Hz line frequency notch filtering. Impedance was maintained below 10 kOhm. Participants performed gaze-shifting tasks with 32 visual stimulation frequencies across two sessions, with 60 blocks per session (6 training + 24 fatigue blocks per frequency condition). Trial duration was 2 seconds with inter-trial intervals of 0.14-2.14 seconds.",
-  "keywords": [
-    {
-      "term": "SSVEP"
-    },
-    {
-      "term": "brain-computer interfaces"
-    },
-    {
-      "term": "EEG"
-    },
-    {
-      "term": "fatigue"
-    },
-    {
-      "term": "visual evoked potentials"
-    },
-    {
-      "term": "Electroencephalography",
-      "subject_scheme": "MeSH",
-      "value_uri": "http://id.nlm.nih.gov/mesh/D004569"
-    }
-  ],
-  "source_hash": "f4b2666615a5a30343cc0c3bb526734712fe1f3e36c198bb626dd0d850743439"
+  "source_hash": "01667f41ae77a51352558f5320958854e703563d2692422e25d0b34ccbfc3cfa"
 }
