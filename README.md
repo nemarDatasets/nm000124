@@ -1,3 +1,5 @@
+[![DOI](https://img.shields.io/badge/DOI-10.82901%2Fnemar.nm000124-blue)](https://doi.org/10.82901/nemar.nm000124)
+
 # SSVEP fatigue dataset with two frequency paradigms
 
 SSVEP fatigue dataset with two frequency paradigms.
