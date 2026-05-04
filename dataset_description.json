@@ -1,48 +1,50 @@
 {
-	"Name": "Han2024 – SSVEP fatigue dataset with two frequency paradigms",
-	"BIDSVersion": "1.9.0",
-	"HEDVersion": "8.4.0",
-	"DatasetType": "derivative",
-	"License": "CC BY 4.0",
-	"Authors": [
-		"Yuheng Han",
-		"Yufeng Ke",
-		"Ruiyan Wang",
-		"Tao Wang",
-		"Dong Ming"
-	],
-	"Funding": [
-		"National Key Research and Development Program of China (Grant 2021YFF1200603)",
-		"National Natural Science Foundation of China (Grants 62276184, 61806141)"
-	],
-	"EthicsApprovals": [
-		"Research Ethics Committee of Tianjin University"
-	],
-	"ReferencesAndLinks": [
-		"https://zenodo.org/records/10507229"
-	],
-	"GeneratedBy": [
-		{
-			"CodeURL": "https://github.com/NeuroTechX/moabb",
-			"Name": "moabb",
-			"Description": "Mother of All BCI Benchmarks",
-			"Version": "1.4.3"
-		}
-	],
-	"SourceDatasets": [
-		{
-			"DOI": "10.1109/TNSRE.2024.3380635",
-			"URL": "https://zenodo.org/records/10507229"
-		}
-	],
-	"Keywords": [
-		"SSVEP",
-		"BCI",
-		"fatigue",
-		"dynamic stopping",
-		"EEG"
-	],
-	"PublicationYear": 2024,
-	"ExperimentName": "Han2024",
-	"Description": "SSVEP fatigue dataset with two frequency paradigms.\n\n\nDataset summary:\n\n#Subj      24\n#Chan      64\n#Classes      32\n#Trials / class    6-24\nTrials length     2 s\nFreq 1000 Hz\n#Sessions       2\n\n\nParticipants:\n\n- Population: healthy\n\n\nEquipment:\n\n- Amplifier: Synamps2 (Neuroscan)\n- Montage: standard_1005\n- Reference: Cz\n\n\nPreprocessing:\n\n- Data state: epoched\n\n\nData Access:\n\n- DOI: 10.1109/TNSRE.2024.3380635\n- Data URL: https://zenodo.org/records/10507229\n- Repository: Zenodo\n\n\nExperimental Protocol:\n\n- Paradigm: ssvep\n- Task type: gaze-shifting\n- Feedback: none\n- Stimulus: JFPM visual flicker\n\nDataset from [1]_.\n\nThis dataset contains 64-channel EEG recordings from 24 healthy subjects\n(12 males, 12 females, aged 18-26) performing two SSVEP-BCI tasks:\n\n- Low-frequency paradigm: 16 targets (8.0-15.5 Hz, 0.5 Hz step)\n- High-frequency paradigm: 16 targets (25.5-33.0 Hz, 0.5 Hz step)\n\nBoth paradigms used JFPM encoding with phases cycling through\n0, 0.5*pi, pi, 1.5*pi in a 4x4 matrix layout.\n\nThe experiment consisted of two phases: training (6 blocks per frequency\ncondition) and fatigue (24 blocks per condition). Each block contained\n16 trials (2 s stimulation per trial).\n\nEEG was recorded at 1000 Hz with a Synamps2 system (Neuroscan) and 64\nchannels. Each epoch spans 3000 samples (3 s at 1000 Hz).\n\n.. note::\n\nChannel selection is critical for this dataset. Using all 64 channels\nwith CCA-based methods yields near-chance accuracy because the high\nchannel-to-sample ratio causes overfitting. The paper uses 9 occipital\nchannels (PO7, PO3, POz, PO4, PO8, O1, Oz, O2, and one additional)\nand achieves >90% with TRCA. Users should pick occipital channels\nbefore classification.\n\nAdditionally, the cross-session evaluation (training on alert session\n'0', testing on fatigued session '1') is a challenging domain-shift\nproblem that standard CCA/TRCA may not handle well without\nfatigue-aware strategies.\n\nData is stored as [16, 64, 3000, N_blocks] matrices (targets, channels,\ntimepoints, blocks) in per-subject zip files on Zenodo. Each subject has\n4 separate files: low_frequency_train, low_frequency_fatigue,\nhigh_frequency_train, high_frequency_fatigue.\n\nIn MOABB, this is mapped as:\n- Session '0': Training blocks (6 blocks per condition, 12 total)\n- Session '1': Fatigue blocks (24 blocks per condition, 48 total)\n\nReferences\n----------\n.. [1] Y. Han, Y. Ke, R. Wang, T. Wang, and D. Ming, \"Enhancing\nSSVEP-BCI Performance Under Fatigue State Using Dynamic Stopping\nStrategy,\" IEEE Trans. Neural Syst. Rehab. Eng., vol. 32,\npp. 1407-1415, 2024. DOI: 10.1109/TNSRE.2024.3380635"
+  "Name": "Han2024 – SSVEP fatigue dataset with two frequency paradigms",
+  "BIDSVersion": "1.9.0",
+  "HEDVersion": "8.4.0",
+  "DatasetType": "derivative",
+  "License": "CC BY 4.0",
+  "Authors": [
+    "Yuheng Han",
+    "Yufeng Ke",
+    "Ruiyan Wang",
+    "Tao Wang",
+    "Dong Ming"
+  ],
+  "Funding": [
+    "National Key Research and Development Program of China (Grant 2021YFF1200603)",
+    "National Natural Science Foundation of China (Grants 62276184, 61806141)"
+  ],
+  "EthicsApprovals": [
+    "Research Ethics Committee of Tianjin University"
+  ],
+  "ReferencesAndLinks": [
+    "https://zenodo.org/records/10507229"
+  ],
+  "GeneratedBy": [
+    {
+      "CodeURL": "https://github.com/NeuroTechX/moabb",
+      "Name": "moabb",
+      "Description": "Mother of All BCI Benchmarks",
+      "Version": "1.4.3"
+    }
+  ],
+  "SourceDatasets": [
+    {
+      "DOI": "10.1109/TNSRE.2024.3380635",
+      "URL": "https://zenodo.org/records/10507229"
+    }
+  ],
+  "Keywords": [
+    "SSVEP",
+    "BCI",
+    "fatigue",
+    "dynamic stopping",
+    "EEG"
+  ],
+  "PublicationYear": 2024,
+  "ExperimentName": "Han2024",
+  "Description": "SSVEP fatigue dataset with two frequency paradigms.\n\n\nDataset summary:\n\n#Subj      24\n#Chan      64\n#Classes      32\n#Trials / class    6-24\nTrials length     2 s\nFreq 1000 Hz\n#Sessions       2\n\n\nParticipants:\n\n- Population: healthy\n\n\nEquipment:\n\n- Amplifier: Synamps2 (Neuroscan)\n- Montage: standard_1005\n- Reference: Cz\n\n\nPreprocessing:\n\n- Data state: epoched\n\n\nData Access:\n\n- DOI: 10.1109/TNSRE.2024.3380635\n- Data URL: https://zenodo.org/records/10507229\n- Repository: Zenodo\n\n\nExperimental Protocol:\n\n- Paradigm: ssvep\n- Task type: gaze-shifting\n- Feedback: none\n- Stimulus: JFPM visual flicker\n\nDataset from [1]_.\n\nThis dataset contains 64-channel EEG recordings from 24 healthy subjects\n(12 males, 12 females, aged 18-26) performing two SSVEP-BCI tasks:\n\n- Low-frequency paradigm: 16 targets (8.0-15.5 Hz, 0.5 Hz step)\n- High-frequency paradigm: 16 targets (25.5-33.0 Hz, 0.5 Hz step)\n\nBoth paradigms used JFPM encoding with phases cycling through\n0, 0.5*pi, pi, 1.5*pi in a 4x4 matrix layout.\n\nThe experiment consisted of two phases: training (6 blocks per frequency\ncondition) and fatigue (24 blocks per condition). Each block contained\n16 trials (2 s stimulation per trial).\n\nEEG was recorded at 1000 Hz with a Synamps2 system (Neuroscan) and 64\nchannels. Each epoch spans 3000 samples (3 s at 1000 Hz).\n\n.. note::\n\nChannel selection is critical for this dataset. Using all 64 channels\nwith CCA-based methods yields near-chance accuracy because the high\nchannel-to-sample ratio causes overfitting. The paper uses 9 occipital\nchannels (PO7, PO3, POz, PO4, PO8, O1, Oz, O2, and one additional)\nand achieves >90% with TRCA. Users should pick occipital channels\nbefore classification.\n\nAdditionally, the cross-session evaluation (training on alert session\n'0', testing on fatigued session '1') is a challenging domain-shift\nproblem that standard CCA/TRCA may not handle well without\nfatigue-aware strategies.\n\nData is stored as [16, 64, 3000, N_blocks] matrices (targets, channels,\ntimepoints, blocks) in per-subject zip files on Zenodo. Each subject has\n4 separate files: low_frequency_train, low_frequency_fatigue,\nhigh_frequency_train, high_frequency_fatigue.\n\nIn MOABB, this is mapped as:\n- Session '0': Training blocks (6 blocks per condition, 12 total)\n- Session '1': Fatigue blocks (24 blocks per condition, 48 total)\n\nReferences\n----------\n.. [1] Y. Han, Y. Ke, R. Wang, T. Wang, and D. Ming, \"Enhancing\nSSVEP-BCI Performance Under Fatigue State Using Dynamic Stopping\nStrategy,\" IEEE Trans. Neural Syst. Rehab. Eng., vol. 32,\npp. 1407-1415, 2024. DOI: 10.1109/TNSRE.2024.3380635",
+  "DatasetDOI": "10.82901/nemar.nm000124",
+  "Version": "1.0.0"
 }
