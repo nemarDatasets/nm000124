@@ -2,8 +2,8 @@
   "version": "2.0",
   "pipeline_stage": "validated",
   "title": "Han2024 – SSVEP fatigue dataset with two frequency paradigms",
-  "description": "A 64-channel EEG dataset from 24 healthy subjects performing steady-state visually evoked potential (SSVEP) brain-computer interface tasks across two frequency paradigms (8.0-15.5 Hz and 25.5-33.0 Hz). The dataset includes training and fatigue-state sessions with 32 visual targets encoded using joint frequency-phase modulation, designed to investigate the effects of mental fatigue on SSVEP-BCI performance and the efficacy of dynamic stopping strategies.",
-  "methods_description": "EEG was recorded at 1000 Hz using a 64-channel Synamps2 system (Neuroscan) with standard 10-05 montage referenced to Cz. Participants performed two SSVEP-BCI tasks with low-frequency (16 targets, 8.0-15.5 Hz) and high-frequency (16 targets, 25.5-33.0 Hz) paradigms using JFPM encoding in a 4×4 matrix layout. Each paradigm consisted of training (6 blocks) and fatigue (24 blocks) phases, with 2-second stimulus presentations per trial. Data were epoched to 3-second windows (3000 samples).",
+  "description": "A 64-channel EEG dataset from 24 healthy subjects performing steady-state visually evoked potential (SSVEP) brain-computer interface tasks across two frequency paradigms (8.0-15.5 Hz and 25.5-33.0 Hz). The dataset includes training and fatigue-state recordings to investigate the effects of mental fatigue on SSVEP-BCI performance using dynamic stopping strategies. Data were collected at 1000 Hz using JFPM encoding with 32 visual targets in a 4×4 matrix layout.",
+  "methods_description": "EEG was recorded from 24 healthy subjects (12 male, 12 female, aged 18-26) using a 64-channel Synamps2 system (Neuroscan) at 1000 Hz sampling rate with Cz reference. Subjects performed two SSVEP-BCI paradigms: low-frequency (16 targets, 8.0-15.5 Hz, 0.5 Hz step) and high-frequency (16 targets, 25.5-33.0 Hz, 0.5 Hz step). Each paradigm used JFPM encoding with phase cycling (0, 0.5π, π, 1.5π) in a 4×4 matrix layout. The experiment consisted of training (6 blocks per condition) and fatigue (24 blocks per condition) phases, with each block containing 16 trials of 2-second stimulation. Data were epoched to 3-second windows (3000 samples) and preprocessed with online bandpass filtering (0.15-200 Hz).",
   "license": "CC BY 4.0",
   "dataset_type": "derivative",
   "authors": {
@@ -53,7 +53,9 @@
       "term": "SSVEP"
     },
     {
-      "term": "brain-computer interfaces"
+      "term": "Brain-Computer Interfaces",
+      "subject_scheme": "MeSH",
+      "value_uri": "http://id.nlm.nih.gov/mesh/D062207"
     },
     {
       "term": "EEG"
@@ -65,7 +67,10 @@
       "term": "visual evoked potentials"
     },
     {
-      "term": "frequency paradigm"
+      "term": "mental fatigue"
+    },
+    {
+      "term": "dynamic stopping"
     }
   ],
   "related_identifiers": [
@@ -80,11 +85,6 @@
       "relation_type": "IsDescribedBy"
     },
     {
-      "identifier": "https://nemar.org/dataexplorer/detail?dataset_id=nm000124",
-      "identifier_type": "URL",
-      "relation_type": "IsDescribedBy"
-    },
-    {
       "identifier": "10.21105/joss.01896",
       "identifier_type": "DOI",
       "relation_type": "References"
@@ -93,6 +93,11 @@
       "identifier": "10.1038/s41597-019-0104-8",
       "identifier_type": "DOI",
       "relation_type": "References"
+    },
+    {
+      "identifier": "https://nemar.org/dataset/nm000124",
+      "identifier_type": "URL",
+      "relation_type": "IsDescribedBy"
     }
   ],
   "funding_references": [
@@ -115,16 +120,17 @@
     "eeg"
   ],
   "sizes": [
-    "18.3 GB (50 files)"
+    "35.5 GB (146 files)"
   ],
   "formats": [
     ".html",
     ".json",
+    ".mat",
     ".md",
     ".set",
     ".tsv",
     ".yaml",
     ".yml"
   ],
-  "source_hash": "01667f41ae77a51352558f5320958854e703563d2692422e25d0b34ccbfc3cfa"
+  "source_hash": "ed436b1710d69051cd50049afb422b511e5c9f482f483c694a87f50dcd792c35"
 }
