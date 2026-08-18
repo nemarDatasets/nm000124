@@ -2,8 +2,8 @@
   "version": "2.0",
   "pipeline_stage": "validated",
   "title": "Han2024 – SSVEP fatigue dataset with two frequency paradigms",
-  "description": "A 64-channel EEG dataset from 24 healthy subjects performing steady-state visually evoked potential (SSVEP) brain-computer interface tasks across two frequency paradigms (8.0-15.5 Hz and 25.5-33.0 Hz). The dataset includes training and fatigue-state recordings to investigate the effects of mental fatigue on SSVEP-BCI performance using dynamic stopping strategies. Data were collected at 1000 Hz using JFPM encoding with 32 visual targets in a 4×4 matrix layout.",
-  "methods_description": "EEG was recorded from 24 healthy subjects (12 male, 12 female, aged 18-26) using a 64-channel Synamps2 system (Neuroscan) at 1000 Hz sampling rate with Cz reference. Subjects performed two SSVEP-BCI paradigms: low-frequency (16 targets, 8.0-15.5 Hz, 0.5 Hz step) and high-frequency (16 targets, 25.5-33.0 Hz, 0.5 Hz step). Each paradigm used JFPM encoding with phase cycling (0, 0.5π, π, 1.5π) in a 4×4 matrix layout. The experiment consisted of training (6 blocks per condition) and fatigue (24 blocks per condition) phases, with each block containing 16 trials of 2-second stimulation. Data were epoched to 3-second windows (3000 samples) and preprocessed with online bandpass filtering (0.15-200 Hz).",
+  "description": "A 64-channel EEG dataset from 24 healthy subjects performing steady-state visually evoked potential (SSVEP) brain-computer interface tasks across two frequency paradigms (8.0-15.5 Hz and 25.5-33.0 Hz). The dataset includes training and fatigue-state recordings to investigate the effects of mental fatigue on SSVEP-BCI performance and the efficacy of dynamic stopping strategies. Data were collected at 1000 Hz using a Synamps2 system with JFPM visual encoding.",
+  "methods_description": "EEG recordings were acquired from 24 healthy subjects (12 male, 12 female, aged 18-26) using a 64-channel Synamps2 system (Neuroscan) at 1000 Hz sampling rate with Cz reference. Subjects performed two SSVEP-BCI tasks: a low-frequency paradigm with 16 targets (8.0-15.5 Hz, 0.5 Hz step) and a high-frequency paradigm with 16 targets (25.5-33.0 Hz, 0.5 Hz step). Both paradigms used JFPM encoding with phases cycling through 0, 0.5π, π, 1.5π in a 4×4 matrix layout. The experiment consisted of training (6 blocks per condition) and fatigue (24 blocks per condition) phases, with each block containing 16 trials of 2-second stimulation. Online filters applied: bandpass 0.15-200 Hz.",
   "license": "CC BY 4.0",
   "dataset_type": "derivative",
   "authors": {
@@ -132,5 +132,5 @@
     ".yaml",
     ".yml"
   ],
-  "source_hash": "ed436b1710d69051cd50049afb422b511e5c9f482f483c694a87f50dcd792c35"
+  "source_hash": "6cd2969e2e0eff585b440d8608a24f7460fec6d4560e221736bedd4d8a7ad855"
 }
