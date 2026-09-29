@@ -2,8 +2,8 @@
   "version": "2.0",
   "pipeline_stage": "validated",
   "title": "Han2024 – SSVEP fatigue dataset with two frequency paradigms",
-  "description": "A 64-channel EEG dataset from 24 healthy subjects performing steady-state visually evoked potential (SSVEP) brain-computer interface tasks across two frequency paradigms (8.0-15.5 Hz and 25.5-33.0 Hz). The dataset includes training and fatigue-state recordings to investigate the effects of mental fatigue on SSVEP-BCI performance and the efficacy of dynamic stopping strategies. Data were collected at 1000 Hz using a Synamps2 system with JFPM visual encoding.",
-  "methods_description": "EEG recordings were acquired from 24 healthy subjects (12 male, 12 female, aged 18-26) using a 64-channel Synamps2 system (Neuroscan) at 1000 Hz sampling rate with Cz reference. Subjects performed two SSVEP-BCI tasks: a low-frequency paradigm with 16 targets (8.0-15.5 Hz, 0.5 Hz step) and a high-frequency paradigm with 16 targets (25.5-33.0 Hz, 0.5 Hz step). Both paradigms used JFPM encoding with phases cycling through 0, 0.5π, π, 1.5π in a 4×4 matrix layout. The experiment consisted of training (6 blocks per condition) and fatigue (24 blocks per condition) phases, with each block containing 16 trials of 2-second stimulation. Online filters applied: bandpass 0.15-200 Hz.",
+  "description": "This dataset contains 64-channel EEG recordings from 24 healthy participants performing two SSVEP-based brain-computer interface tasks designed to study the effects of fatigue. Each task used 16 targets, one in a low-frequency band (8.0-15.5 Hz) and one in a high-frequency band (25.5-33.0 Hz), with JFPM visual flicker encoding. Recordings cover a training phase and a fatigue phase, which supports evaluating dynamic stopping strategies and cross-session robustness of SSVEP decoding.",
+  "methods_description": "EEG was recorded at 1000 Hz with a Synamps2 amplifier (Neuroscan) using 64 channels, Cz reference, and impedance below 10 kOhm. Participants shifted gaze among 16 targets in a 4x4 layout, with 2 s stimulation per trial. Each frequency condition had 6 training blocks and 24 fatigue blocks of 16 trials each.",
   "license": "CC BY 4.0",
   "dataset_type": "derivative",
   "authors": {
@@ -53,24 +53,19 @@
       "term": "SSVEP"
     },
     {
-      "term": "Brain-Computer Interfaces",
-      "subject_scheme": "MeSH",
-      "value_uri": "http://id.nlm.nih.gov/mesh/D062207"
+      "term": "EEG"
     },
     {
-      "term": "EEG"
+      "term": "brain-computer interface"
     },
     {
       "term": "fatigue"
     },
     {
-      "term": "visual evoked potentials"
-    },
-    {
-      "term": "mental fatigue"
-    },
-    {
       "term": "dynamic stopping"
+    },
+    {
+      "term": "visual evoked potentials"
     }
   ],
   "related_identifiers": [
@@ -120,7 +115,7 @@
     "eeg"
   ],
   "sizes": [
-    "35.5 GB (146 files)"
+    "33.05 GB (146 files)"
   ],
   "formats": [
     ".html",
