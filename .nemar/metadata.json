@@ -2,8 +2,8 @@
   "version": "2.0",
   "pipeline_stage": "validated",
   "title": "Han2024 – SSVEP fatigue dataset with two frequency paradigms",
-  "description": "This dataset contains 64-channel EEG recordings from 24 healthy participants performing two SSVEP-based brain-computer interface tasks designed to study the effects of fatigue. Each task used 16 targets, one in a low-frequency band (8.0-15.5 Hz) and one in a high-frequency band (25.5-33.0 Hz), with JFPM visual flicker encoding. Recordings cover a training phase and a fatigue phase, which supports evaluating dynamic stopping strategies and cross-session robustness of SSVEP decoding.",
-  "methods_description": "EEG was recorded at 1000 Hz with a Synamps2 amplifier (Neuroscan) using 64 channels, Cz reference, and impedance below 10 kOhm. Participants shifted gaze among 16 targets in a 4x4 layout, with 2 s stimulation per trial. Each frequency condition had 6 training blocks and 24 fatigue blocks of 16 trials each.",
+  "description": "This dataset contains 64-channel EEG recordings from 24 healthy participants performing two SSVEP-based brain-computer interface tasks, one with a low-frequency paradigm (8.0-15.5 Hz) and one with a high-frequency paradigm (25.5-33.0 Hz). Each paradigm had 16 targets with joint frequency-phase modulation (JFPM). The recordings include training and fatigue phases, so the data can be used to study how fatigue affects SSVEP-BCI performance and to evaluate dynamic stopping strategies.",
+  "methods_description": "EEG was recorded at 1000 Hz from 64 channels with a Synamps2 amplifier (Neuroscan), referenced to Cz. Each participant completed a training phase (6 blocks per frequency condition) and a fatigue phase (24 blocks per condition). Each block had 16 trials of 2 s visual flicker stimulation in a 4x4 matrix layout. The data are epoched and distributed as per-subject files.",
   "license": "CC BY 4.0",
   "dataset_type": "derivative",
   "authors": {
@@ -50,22 +50,23 @@
   },
   "keywords": [
     {
+      "term": "Electroencephalography",
+      "subject_scheme": "MeSH",
+      "value_uri": "http://id.nlm.nih.gov/mesh/D004569"
+    },
+    {
+      "term": "Brain-Computer Interfaces",
+      "subject_scheme": "MeSH",
+      "value_uri": "http://id.nlm.nih.gov/mesh/D062207"
+    },
+    {
       "term": "SSVEP"
-    },
-    {
-      "term": "EEG"
-    },
-    {
-      "term": "brain-computer interface"
     },
     {
       "term": "fatigue"
     },
     {
       "term": "dynamic stopping"
-    },
-    {
-      "term": "visual evoked potentials"
     }
   ],
   "related_identifiers": [
@@ -127,5 +128,5 @@
     ".yaml",
     ".yml"
   ],
-  "source_hash": "6cd2969e2e0eff585b440d8608a24f7460fec6d4560e221736bedd4d8a7ad855"
+  "source_hash": "e773cf4e0d63d91d9f82e97143087bc781d3086b518227407d342173b7248748"
 }
